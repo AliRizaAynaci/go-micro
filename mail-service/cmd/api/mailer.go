@@ -2,6 +2,7 @@ package main
 
 import (
 	"bytes"
+	"log"
 	"text/template"
 	"time"
 
@@ -47,11 +48,13 @@ func (m *Mail) SendSMTPMessage(msg Message) error {
 
 	formattedMessage, err := m.buildHTMLMessage(msg)
 	if err != nil {
+		log.Println(err)
 		return err
 	}
 
 	plainMessage, err := m.buildPlainTextMessage(msg)
 	if err != nil {
+		log.Println(err)
 		return err
 	}
 
